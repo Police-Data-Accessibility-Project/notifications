@@ -19,7 +19,7 @@ pipeline {
             steps {
                 echo 'Calling notifications endpoint...'
                 sh 'chmod +x *'
-                sh 'python3 notifications/send_notifications.py'
+                sh './notifications/runner.sh'
             }
         }
     }
