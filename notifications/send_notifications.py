@@ -1,7 +1,6 @@
 import os
 
 import requests
-import argparse
 
 BASE_ROUTE = 'https://data-sources-v2.pdap.io/api'
 

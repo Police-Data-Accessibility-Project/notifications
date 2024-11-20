@@ -18,6 +18,7 @@ WORKDIR /opt/app
 RUN pip install --no-cache-dir -r requirements.txt --break-system-packages
 COPY . /opt/app
 
+# TODO: May need to modify the below line as we add more repositories
 # Copy the app folder into the image
 COPY --chmod=755 . .
 
