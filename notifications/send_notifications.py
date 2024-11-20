@@ -21,12 +21,9 @@ def call_notifications_endpoint(jwt_token: str):
     print(response.json())
 
 def send_notifications(email: str, password: str):
-    try:
-        jwt_token = login(email, password)
-        call_notifications_endpoint(jwt_token)
-    except requests.exceptions.HTTPError as e:
-        print(f"Error with email {email} and password {password}")
-        print(e)
+    jwt_token = login(email, password)
+    call_notifications_endpoint(jwt_token)
+
 
 
 if __name__ == '__main__':
