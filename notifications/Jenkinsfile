@@ -19,7 +19,7 @@ pipeline {
             steps {
                 echo 'Calling notifications endpoint...'
                 sh 'chmod +x *'
-                sh 'python notifications/send_notifications.py --email $NOTIFICATIONS_APP_USER_EMAIL --password $NOTIFICATIONS_APP_USER_PASSWORD'
+                sh 'python3 notifications/send_notifications.py --email $NOTIFICATIONS_APP_USER_EMAIL --password $NOTIFICATIONS_APP_USER_PASSWORD'
             }
         }
     }
