@@ -1,0 +1,26 @@
+#!/usr/bin/env groovy
+
+/*
+This script runs the migration from V1 to V2 Production
+*/
+
+pipeline {
+
+    agent {
+        dockerfile {
+            filename 'Dockerfile'
+            args '-e NOTIFICATIONS_APP_USER_EMAIL=$NOTIFICATIONS_APP_USER_EMAIL -e NOTIFICATIONS_APP_USER_PASSWORD=$NOTIFICATIONS_APP_USER_PASSWORD'
+
+        }
+    }
+
+    stages {
+        stage('Migrate V1 Prod to V2 Prod') {
+            steps {
+                echo 'Calling notifications endpoint...'
+                sh 'chmod +x *'
+                sh 'python send_notifications.py --email $NOTIFICATIONS_APP_USER_EMAIL --password $NOTIFICATIONS_APP_USER_PASSWORD'
+            }
+        }
+    }
+}
