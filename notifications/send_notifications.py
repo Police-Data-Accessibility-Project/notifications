@@ -1,3 +1,5 @@
+import os
+
 import requests
 import argparse
 
@@ -24,8 +26,8 @@ def send_notifications(email: str, password: str):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--email', type=str, required=True)
-    parser.add_argument('--password', type=str, required=True)
-    args = parser.parse_args()
-    send_notifications(args.email, args.password)
+    # Get values from environment
+    email = os.environ['NOTIFICATIONS_APP_USER_EMAIL']
+    password = os.environ['NOTIFICATIONS_APP_USER_PASSWORD']
+
+    send_notifications(email, password)
