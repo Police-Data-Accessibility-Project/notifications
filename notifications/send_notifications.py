@@ -6,7 +6,7 @@ import argparse
 BASE_ROUTE = 'https://data-sources-v2.pdap.io/api'
 
 def login(email: str, password: str) -> str:
-    login_route = f'{BASE_ROUTE}/login'
+    login_route = f'{BASE_ROUTE}/auth/login'
     payload = {'email': email, 'password': password}
     headers = {'Content-Type': 'application/json'}
     response = requests.post(login_route, json=payload, headers=headers)
