@@ -9,6 +9,7 @@ pipeline {
     agent {
         dockerfile {
             filename 'github_data_requests_synchronize/Dockerfile'
+            additionalBuildArgs '--no-cache'
             args '-e GITHUB_SYNCHRONIZE_APP_USER_EMAIL=$GITHUB_SYNCHRONIZE_APP_USER_PASSWORD -e GITHUB_SYNCHRONIZE_APP_USER_PASSWORD=$GITHUB_SYNCHRONIZE_APP_USER_PASSWORD -e BASE_ROUTE=$BASE_ROUTE'
 
         }
