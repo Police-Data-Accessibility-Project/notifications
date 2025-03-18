@@ -1,6 +1,6 @@
+import requests
 import argparse
 
-import requests
 
 from helpers.miscellaneous_functions import get_base_route
 from helpers.login import login
