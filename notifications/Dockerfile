@@ -22,6 +22,7 @@ COPY . /opt/app
 
 # TODO: May need to modify the below line as we add more repositories
 # Copy the app folder into the image
-COPY --chmod=755 . .
+COPY --chmod=755 helpers /opt/app/helpers
+COPY --chmod=755 notifications /opt/app/notifications
 
 EXPOSE 3000
