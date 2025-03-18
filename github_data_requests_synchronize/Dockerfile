@@ -19,6 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt --break-system-packages
 COPY . /opt/app
 
 # Copy the app folder into the image
+COPY --chmod=755 helpers .
 COPY --chmod=755 github_data_requests_synchronize .
 
 EXPOSE 3000
