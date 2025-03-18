@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 # is accessible within the container.
 COPY notifications/requirements.txt /opt/app/requirements.txt
 WORKDIR /opt/app
-RUN pip install --no-cache-dir -r requirements.txt --break-system-packages
+RUN python3.11 -m pip install --no-cache-dir -r requirements.txt --break-system-packages
 COPY . /opt/app
 
 # Copy the app folder into the image
