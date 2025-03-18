@@ -15,7 +15,7 @@ pipeline {
     }
 
     stages {
-        stage('Migrate V1 Prod to V2 Prod') {
+        stage('Call notifications endpoint') {
             steps {
                 echo 'Calling notifications endpoint...'
                 sh 'chmod -R +x *'

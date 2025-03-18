@@ -1,0 +1,26 @@
+#!/usr/bin/env groovy
+
+/*
+This script runs the Github Data Requests Synchronization Operation
+*/
+
+pipeline {
+
+    agent {
+        dockerfile {
+            filename 'github_data_requests_synchronize/Dockerfile'
+            args '-e GITHUB_SYNCHRONIZE_APP_USER_EMAIL=$GITHUB_SYNCHRONIZE_APP_USER_PASSWORD -e GITHUB_SYNCHRONIZE_APP_USER_PASSWORD=$GITHUB_SYNCHRONIZE_APP_USER_PASSWORD -e BASE_ROUTE=$BASE_ROUTE'
+
+        }
+    }
+
+    stages {
+        stage('Call github requests synchronization endpoint') {
+            steps {
+                echo 'Calling github requests synchronization endpoint...'
+                sh 'chmod -R +x *'
+                sh './github_data_requests_synchronize/runner.sh'
+            }
+        }
+    }
+}
