@@ -1,20 +1,13 @@
-import os
-
 import requests
 import argparse
 
-BASE_ROUTE = 'https://data-sources-v2.pdap.io/api'
+from helpers.miscellaneous_functions import get_base_route
+from helpers.login import login
 
-def login(email: str, password: str) -> str:
-    login_route = f'{BASE_ROUTE}/login'
-    payload = {'email': email, 'password': password}
-    headers = {'Content-Type': 'application/json'}
-    response = requests.post(login_route, json=payload, headers=headers)
-    response.raise_for_status()
-    return response.json()['access_token']
 
 def call_notifications_endpoint(jwt_token: str):
-    notifications_route = f'{BASE_ROUTE}/notifications'
+    base_root = get_base_route()
+    notifications_route = f'{base_root}/notifications'
     headers = {'Authorization': f'Bearer {jwt_token}'}
     response = requests.post(notifications_route, headers=headers)
     response.raise_for_status()
