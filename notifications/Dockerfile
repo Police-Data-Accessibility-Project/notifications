@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 # Install dependencies necessary for add-apt-repository
 RUN apt-get install software-properties-common -y
-RUN apt-get install -y curl
+RUN apt-get -y update; apt-get -y install curl
 
 
 # Install Python and pip
