@@ -5,6 +5,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 # Install dependencies necessary for add-apt-repository
 RUN apt-get install software-properties-common -y
+RUN apt-get install -y curl
+
 
 # Install Python and pip
 RUN add-apt-repository ppa:deadsnakes/ppa
