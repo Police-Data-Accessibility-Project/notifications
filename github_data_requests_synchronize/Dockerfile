@@ -7,7 +7,6 @@ RUN apt-get update
 RUN apt-get install software-properties-common -y
 RUN apt-get -y update && apt-get -y install curl
 
-
 # Install Python and pip
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update && apt-get install -y \
@@ -15,13 +14,16 @@ RUN apt-get update && apt-get install -y \
     python3-pip
 # This section ensures that the Python package installation built inside the Dockerfile
 # is accessible within the container.
-COPY notifications/requirements.txt /opt/app/requirements.txt
+# Set up the working directory
 WORKDIR /opt/app
-RUN python3.11 -m pip install --no-cache-dir -r requirements.txt --break-system-packages
-COPY . /opt/app
 
-# Copy the app folder into the image
+# Copy dependencies and install them
+COPY github_data_requests_synchronize/requirements.txt /opt/app/requirements.txt
+RUN python3.11 -m pip install --no-cache-dir -r requirements.txt --break-system-packages
+
+# Copy the rest of the application
 COPY --chmod=755 helpers /opt/app/helpers
-COPY --chmod=755 notifications /opt/app/notifications
+COPY --chmod=755 github_data_requests_synchronize /opt/app/github_data_requests_synchronize
 
 EXPOSE 3000
+

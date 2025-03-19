@@ -1,25 +1,25 @@
 #!/usr/bin/env groovy
 
 /*
-This script runs the migration from V1 to V2 Production
+This script runs the Github Data Requests Synchronization Operation
 */
 
 pipeline {
 
     agent {
         dockerfile {
-            filename 'notifications/Dockerfile'
-            args '-e NOTIFICATIONS_APP_USER_EMAIL=$NOTIFICATIONS_APP_USER_EMAIL -e NOTIFICATIONS_APP_USER_PASSWORD=$NOTIFICATIONS_APP_USER_PASSWORD'
+            filename 'github_data_requests_synchronize/Dockerfile'
+            args '-e GITHUB_SYNCHRONIZE_APP_USER_EMAIL=$GITHUB_SYNCHRONIZE_APP_USER_PASSWORD -e GITHUB_SYNCHRONIZE_APP_USER_PASSWORD=$GITHUB_SYNCHRONIZE_APP_USER_PASSWORD -e BASE_ROUTE=$BASE_ROUTE'
 
         }
     }
 
     stages {
-        stage('Call notifications endpoint') {
+        stage('Call github requests synchronization endpoint') {
             steps {
-                echo 'Calling notifications endpoint...'
+                echo 'Calling github requests synchronization endpoint...'
                 sh 'chmod -R +x *'
-                sh './notifications/runner.sh'
+                sh './github_data_requests_synchronize/runner.sh'
             }
         }
     }
